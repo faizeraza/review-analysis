@@ -7,16 +7,16 @@ import string
 from nltk.stem import WordNetLemmatizer 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split as tts
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
+# nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('wordnet')
+# nltk.download('omw-1.4')
 
 def tokenization(targetColumn):
     df= np.asarray(targetColumn)
     df_token=[]
     for i in df:
-        print(i)
+        # print(i)
         i= i.lower()  #convert  to lower case
         i = i.translate(str.maketrans('','',string.punctuation))   #removed punctuation 
         df_token.append(nltk.word_tokenize(i)) 
