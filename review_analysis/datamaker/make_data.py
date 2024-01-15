@@ -73,10 +73,10 @@ def main():
     # split test, train dataset
     X_train,X_test, y_train , y_test = tts(X , y , test_size = 0.2)
 
-    X_train.to_csv("review_analysis/data/processed/X_train.csv")
-    X_test.to_csv("review_analysis/data/processed/X_test.csv")
-    y_train.to_csv("review_analysis/data/processed/y_train.csv")
-    y_test.to_csv("review_analysis/data/processed/y_test.csv")
+    X_train.to_csv("review_analysis/data/processed/X_train.csv",index=False)
+    X_test.to_csv("review_analysis/data/processed/X_test.csv",index=False)
+    y_train.to_csv("review_analysis/data/processed/y_train.csv",index=False)
+    y_test.to_csv("review_analysis/data/processed/y_test.csv",index=False)
     print("Data Cleaned...")
 
 if __name__ == "__main__":
