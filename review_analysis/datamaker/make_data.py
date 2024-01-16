@@ -45,21 +45,19 @@ def main():
     df_alexa.drop(df_alexa.columns[df_alexa.columns.str.contains('Unnamed',case = False)],axis = 1, inplace = True)
     df_alexa.dropna(how= 'any', axis = 0)
     # print(df_alexa.isnull().sum())
-    x_cat = df_alexa[['variation']]
-    encoder = OneHotEncoder()
-    x_cat = pd.DataFrame(encoder.fit_transform(x_cat).toarray())
+    # x_cat = df_alexa[['variation']]
+    # encoder = OneHotEncoder()
+    # x_cat = pd.DataFrame(encoder.fit_transform(x_cat).toarray())
 
     # df2  = [df_alexa['verified_reviews'], df_alexa['feedback'], x_cat]
-    df_alexa= pd.concat([df_alexa,x_cat], axis=1)
-    df_alexa.drop(['variation'],axis=1,inplace=True)
-    df_alexa['verified_reviews'].dropna()
+    # df_alexa= pd.concat([df_alexa,x_cat], axis=1)
+    # df_alexa.drop(['variation'],axis=1,inplace=True)
     #tokenization of reviews
-    df_token = tokenization(df_alexa['verified_reviews'])
-        
     # stopwords removed
     # lemmatizing words
+    df_alexa['verified_reviews'].dropna()
+    df_token = tokenization(df_alexa['verified_reviews'])
     df_alexa['verified_reviews'] = removeStopWords(df_token)
-
     # transform words to vectors
     countv = CountVectorizer()
     reviews_countv = countv.fit_transform(df_alexa['verified_reviews'])
