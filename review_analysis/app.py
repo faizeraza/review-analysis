@@ -6,7 +6,7 @@ import seaborn as sns
 from sklearn.metrics import accuracy_score as ac
 from sklearn.metrics import confusion_matrix as cm
 import pickle
-import cleantext
+
 from nltk import word_tokenize
 
 st.title('Sentiment Analyser App')
@@ -21,15 +21,15 @@ def plot_acaAndcm(model_ac,model_cm,df):
     st.write(model,model_ac)
     st.write(fig,df)
 
-def predictsentiment(text):
-    cleaned = cleantext.clean(text, clean_all= False, extra_spaces=True ,
-                                 stopwords=True ,lowercase=True ,numbers=True , punct=True)
-    tokenaized = word_tokenize(cleaned)
-    print(tokenaized)
+def plot_
+
 # Bellow code is for test case accuracy_score check
 X_test = pd.read_csv("review_analysis/data/processed/X_test.csv")
 y_test = pd.read_csv("review_analysis/data/processed/y_test.csv")
 ls = os.listdir(r"review_analysis/models")
+
+# st.markdown("# Main page")
+st.sidebar.markdown("# Dashboard")
 for model in ls:
     filename = f"review_analysis/models/{model}"
     loaded_model = pickle.load(open(filename, 'rb'))

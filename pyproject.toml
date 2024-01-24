@@ -17,6 +17,9 @@ seaborn = "^0.13.1"
 cleantext = "^1.1.4"
 
 
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
