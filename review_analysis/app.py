@@ -21,8 +21,6 @@ def plot_acaAndcm(model_ac,model_cm,df):
     st.write(model,model_ac)
     st.write(fig,df)
 
-def plot_
-
 # Bellow code is for test case accuracy_score check
 X_test = pd.read_csv("review_analysis/data/processed/X_test.csv")
 y_test = pd.read_csv("review_analysis/data/processed/y_test.csv")
