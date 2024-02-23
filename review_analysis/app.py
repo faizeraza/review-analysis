@@ -6,8 +6,17 @@ import seaborn as sns
 from sklearn.metrics import accuracy_score as ac
 from sklearn.metrics import confusion_matrix as cm
 import pickle
-
 from nltk import word_tokenize
+
+# theme_options = ["Light", "Dark"]
+# selected_theme = st.selectbox("Select Theme", theme_options)
+
+# # Set the theme based on user selection
+# if selected_theme == "Light":
+#     st.set_page_config(theme="light")
+# elif selected_theme == "Dark":
+#     st.set_page_config(theme="dark")
+
 
 st.title('Sentiment Analyser App')
 st.write('Welcome to Our sentiment analysis app! \t bellow are the accuracy of different model for our trained dataset.')
