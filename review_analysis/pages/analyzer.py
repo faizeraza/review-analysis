@@ -3,6 +3,11 @@ from textblob import TextBlob
 import cleantext
 import nltk
 from nltk.corpus import wordnet
+from collections import Counter
+import emoji
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 st.markdown("Analyze text")
 st.sidebar.markdown("# analyzer")
@@ -41,13 +46,39 @@ def negation_handler(sentence):
       if "ca" == sentence[i]:
         sentence[i]="can"
     return sentence
+
+#Sentminet analysis
+def emoji_helper(review):
+    emojis = []
+    emojis.extend([c for c in review if emoji.demojize(c) != c]) 
+    emoji_df = pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis)))).rename(columns={0:"Emoji", 1:"Frequency"})
+    return emoji_df
+
 with st.expander('Analyze Text'):
     text = st.text_input('Text here: ')
     if text:
         blob = TextBlob(text)
-        st.write('Polarity: ', round(blob.sentiment.polarity,2))
+        score = blob.sentiment.polarity
+        if score >= 0.5:
+            st.write('Positive')
+        elif score <= -0.5:
+            st.write('Negative')
+        else:
+            st.write('Neutral')
+        st.write('Polarity: ', round(score,2))
         st.write('Subjectivity: ', round(blob.sentiment.subjectivity,2))
+        emoji_df = emoji_helper(text)
+        st.write("Emoji Analysis")
 
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.dataframe(emoji_df)
+        with col2:
+            fig,ax = plt.subplots()
+
+            ax.pie(emoji_df["Frequency"].head(),labels=emoji_df["Emoji"].head(),autopct="%0.2f" )
+            st.pyplot(fig)
 
     pre = st.text_input('Clean Text: ')
     if pre:

@@ -1,6 +1,16 @@
 import streamlit as st
 import pandas as pd
 from textblob import TextBlob
+from collections import Counter
+import emoji
+
+#Sentminet analysis
+def emoji_helper(review):
+    emojis = []
+    emojis.extend([c for c in review if emoji.demojize(c) != c]) 
+    emoji_df = pd.DataFrame(Counter(emojis).most_common(len(Counter(emojis)))).rename(columns={0:"Emoji", 1:"Frequency"})
+    return emoji_df
+
 
 st.markdown("Analyze multiple reviews at once!!!")
 st.sidebar.markdown("# Bulk Analyzer")
@@ -41,5 +51,5 @@ if upl:
         label="Download data as CSV",
         data=csv,
         file_name='sentiment.csv',
-        mime='text/csv',
-    )
+        mime='text/csv')
+    
